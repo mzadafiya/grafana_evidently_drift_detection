@@ -1,0 +1,2 @@
+psycopg2>=2.0.2
+evidently>=0.1.57.dev0

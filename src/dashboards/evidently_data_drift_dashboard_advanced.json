@@ -1,0 +1,833 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P44368ADAD746BC27"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 0,
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {
+          "valueSize": 13
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "x",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "9.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P44368ADAD746BC27"
+          },
+          "format": "table",
+          "group": [
+            {
+              "params": [
+                "\"Feature\""
+              ],
+              "type": "column"
+            },
+            {
+              "params": [
+                "x"
+              ],
+              "type": "column"
+            },
+            {
+              "params": [
+                "\"Datetime\""
+              ],
+              "type": "column"
+            }
+          ],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  \"Datetime\" AS \"time\",\n  avg(y) AS \"y\",\n  x AS \"x\"\nFROM distribution\nWHERE\n  \"Feature\" = '$Feature' AND\n  \"Datetime\" = '$Date' AND\n  \"Distribution Type\" = 'Reference Distribution'\nGROUP BY \"Feature\", x, \"Datetime\"\nORDER BY 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "y"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "y"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "x"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "x"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "distribution",
+          "timeColumn": "\"Datetime\"",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "\"Feature\"",
+                "=",
+                "'$Feature'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "timestamp",
+              "name": "",
+              "params": [
+                "\"Datetime\"",
+                "=",
+                "'$Date'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "\"Distribution Type\"",
+                "=",
+                "'Reference Distribution'"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "title": "Reference Distribution",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P44368ADAD746BC27"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 0,
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {
+          "valueSize": 13
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "x",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "9.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P44368ADAD746BC27"
+          },
+          "format": "table",
+          "group": [
+            {
+              "params": [
+                "\"Feature\""
+              ],
+              "type": "column"
+            },
+            {
+              "params": [
+                "x"
+              ],
+              "type": "column"
+            },
+            {
+              "params": [
+                "\"Datetime\""
+              ],
+              "type": "column"
+            }
+          ],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  \"Datetime\" AS \"time\",\n  avg(y) AS \"y\",\n  x AS \"x\"\nFROM distribution\nWHERE\n  \"Feature\" = '$Feature' AND\n  \"Datetime\" = '$Date' AND\n  \"Distribution Type\" = 'Current Distribution'\nGROUP BY \"Feature\", x, \"Datetime\"\nORDER BY 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "y"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "y"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "x"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "x"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "distribution",
+          "timeColumn": "\"Datetime\"",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "\"Feature\"",
+                "=",
+                "'$Feature'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "timestamp",
+              "name": "",
+              "params": [
+                "\"Datetime\"",
+                "=",
+                "'$Date'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "\"Distribution Type\"",
+                "=",
+                "'Current Distribution'"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "title": "Current Distribution",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P44368ADAD746BC27"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 5,
+      "pconfig": {
+        "fixScale": "",
+        "layout": {
+          "dragmode": "zoom",
+          "font": {
+            "family": "\"Open Sans\", Helvetica, Arial, sans-serif"
+          },
+          "hovermode": "closest",
+          "legend": {
+            "orientation": "h"
+          },
+          "showlegend": false,
+          "xaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Index",
+            "type": "linear",
+            "zeroline": false
+          },
+          "yaxis": {
+            "rangemode": "normal",
+            "showgrid": false,
+            "title": "$Feature",
+            "type": "linear",
+            "zeroline": false
+          },
+          "zaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "type": "linear",
+            "zeroline": false
+          }
+        },
+        "loadFromCDN": false,
+        "settings": {
+          "displayModeBar": false,
+          "type": "scatter"
+        },
+        "showAnnotations": false,
+        "traces": [
+          {
+            "mapping": {
+              "color": "time",
+              "x": "x",
+              "y": "y1"
+            },
+            "name": "Trace 1",
+            "settings": {
+              "color_option": "solid",
+              "line": {
+                "color": "#005f81",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 6
+              },
+              "marker": {
+                "color": "#ff0000",
+                "colorscale": "YlOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": false,
+                "size": 5,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle-dot"
+              }
+            },
+            "show": {
+              "line": true,
+              "markers": true
+            }
+          },
+          {
+            "mapping": {
+              "color": "time",
+              "x": "x",
+              "y": "y2"
+            },
+            "name": "Trace 2",
+            "settings": {
+              "color_option": "solid",
+              "line": {
+                "color": "#2c941c",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 2.5
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "YlOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": false,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "lines": true,
+              "markers": false
+            }
+          },
+          {
+            "mapping": {
+              "color": "time",
+              "x": "x",
+              "y": "y3"
+            },
+            "name": "Trace 3",
+            "settings": {
+              "color_option": "solid",
+              "line": {
+                "color": "#2c941c",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 2.5
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "YlOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": false,
+                "size": 15,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "lines": true,
+              "markers": false
+            }
+          }
+        ]
+      },
+      "pluginVersion": "9.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P44368ADAD746BC27"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  \"x\",\n  avg(y1) AS \"y1\",\n  avg(y2) AS \"y2\",\n  avg(y3) AS \"y3\"\nFROM drift_chart\nWHERE\n  \"Feature\" = '$Feature' AND \"Datetime\" = '$Date'\nGROUP BY \"x\"",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Data Drift",
+      "type": "natel-plotly-panel",
+      "version": 1
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P44368ADAD746BC27"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 75,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 0
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ed0400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4d4d4d",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 7,
+      "options": {
+        "bucketOffset": 0,
+        "combine": false,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "pluginVersion": "9.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P44368ADAD746BC27"
+          },
+          "format": "table",
+          "group": [
+            {
+              "params": [
+                "\"Feature\""
+              ],
+              "type": "column"
+            },
+            {
+              "params": [
+                "\"Datetime\""
+              ],
+              "type": "column"
+            },
+            {
+              "params": [
+                "x"
+              ],
+              "type": "column"
+            }
+          ],
+          "metricColumn": "\"Type\"",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  x\nFROM data_distr\nWHERE\n  \"Feature\" = '$Feature' AND\n  \"Datetime\" = '$Date' AND \"Type\" = 'Current'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "x"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "data_distr",
+          "timeColumn": "\"Datetime\"",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "\"Feature\"",
+                "=",
+                "'$Feature'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "timestamp",
+              "name": "",
+              "params": [
+                "\"Datetime\"",
+                "=",
+                "'$Date'"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P44368ADAD746BC27"
+          },
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  x\nFROM data_distr\nWHERE\n  \"Feature\" = '$Feature' AND\n  \"Datetime\" = '$Date' AND \"Type\" = 'Reference'",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Data Distribution",
+      "transformations": [],
+      "type": "histogram"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "P44368ADAD746BC27"
+        },
+        "definition": "SELECT DISTINCT \"Feature\" from drift_table;",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Feature",
+        "options": [],
+        "query": "SELECT DISTINCT \"Feature\" from drift_table;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "P44368ADAD746BC27"
+        },
+        "definition": "SELECT DISTINCT to_char(\"Datetime\",'yyyy-MM-DD') AS \"Datetime\" from drift_table;",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Date",
+        "options": [],
+        "query": "SELECT DISTINCT to_char(\"Datetime\",'yyyy-MM-DD') AS \"Datetime\" from drift_table;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2012-02-17T12:46:27.925Z",
+    "to": "2033-02-26T12:46:28.181Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Evidently Data Drift Dashboard - Advanced",
+  "uid": "AsTFZ2MVz",
+  "version": 9,
+  "weekStart": ""
+}
