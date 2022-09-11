@@ -9,8 +9,9 @@ We use irish datasets. Then, we configure Evidently `Dashboard` to read the data
 Here is the one for Data Drift.
 
 
-![Dashboard example](https://github.com/mzadafiya/grafana_evidently_drift_detection/blob/main/docs/images/evidently_data_drift_grafana_dashboard.png)
-![Dashboard example](https://github.com/mzadafiya/grafana_evidently_drift_detection/blob/main/docs/images/evidently_data_drift_grafana_dashboard_advance.png)
+![Dashboard example 1](https://github.com/mzadafiya/grafana_evidently_drift_detection/blob/main/docs/images/evidently_data_drift_dashboard.png)
+![Dashboard example 2](https://github.com/mzadafiya/grafana_evidently_drift_detection/blob/main/docs/images/evidently_data_drift_dashboard_advance.png?raw=true)
+
 
 You can reproduce the example locally following the instructions below and choose one or more dashboards.
 
